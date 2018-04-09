@@ -21,10 +21,10 @@ Features to be Implemented
 
 Screenshots
 * Screen of the app as it appears when you load in
-![Alt text](/relative/path/to/Standard)
+![Alt text](https://github.com/NothingButNewts/DnDCompanion/blob/master/5eCharSheet/Standard.png)
 
 * Screen of the app after editing some fields
-![Alt text](/relative/path/to/Custom)
+![Alt text](https://github.com/NothingButNewts/DnDCompanion/blob/master/5eCharSheet/Custom.png)
 
 * Screen of the inventory page
-![Alt text](/relative/path/to/Inv)
+![Alt text](https://github.com/NothingButNewts/DnDCompanion/blob/master/5eCharSheet/Inv.png)
