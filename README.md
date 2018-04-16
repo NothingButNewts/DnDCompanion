@@ -50,10 +50,10 @@ Features to be Implemented
 
 Screenshots
 * Screen of the app as it appears when you load in, now loading from user defaults
-![Alt text](https://github.com/NothingButNewts/DnDCompanion/blob/master/5eCharSheet/MS2-1)
+![Alt text](https://github.com/NothingButNewts/DnDCompanion/blob/master/5eCharSheet/MS2-1.png)
 
 * Screen of the inventory menu with edit options on
-![Alt text](https://github.com/NothingButNewts/DnDCompanion/blob/master/5eCharSheet/MS2-2)
+![Alt text](https://github.com/NothingButNewts/DnDCompanion/blob/master/5eCharSheet/MS2-2.png)
 
 * Screen of the new inventory item page
-![Alt text](https://github.com/NothingButNewts/DnDCompanion/blob/master/5eCharSheet/MS2-3)
+![Alt text](https://github.com/NothingButNewts/DnDCompanion/blob/master/5eCharSheet/MS2-3.png)
