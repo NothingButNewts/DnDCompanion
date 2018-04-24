@@ -58,7 +58,7 @@ class ItemDetailTableVC: UITableViewController {
         // Configure the cell...
         if indexPath.section == MySection.description.rawValue{
             cell.textLabel?.numberOfLines = 0
-            cell.textLabel?.text = item?.description
+            cell.textLabel?.text = item?.info
             cell.textLabel?.font = UIFont.systemFont(ofSize: 18.0)
         }
         cell.textLabel?.textColor = UIColor.white

@@ -37,8 +37,8 @@ class Character {
         else {
             abilities = [10, 10, 10, 10, 10, 10]
         }
-        /*let decoded = defaults.object(forKey: "itemsKey") as! Data
+        let decoded = defaults.object(forKey: "itemsKey") as! Data
         let decodedItems = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Item]
-        items = decodedItems*/
+        items = decodedItems
     }
 }
