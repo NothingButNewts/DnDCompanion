@@ -23,8 +23,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var intLabel: UILabel!
     @IBOutlet weak var currHealth: UITextField!
     @IBOutlet weak var maxHealth: UITextField!
+    @IBOutlet weak var health: UILabel!
+    @IBOutlet weak var ACLabel: UILabel!
+    @IBOutlet weak var speedLabel: UILabel!
+    @IBOutlet weak var profLabel: UILabel!
+    @IBOutlet weak var rollField: UITextField!
+    @IBOutlet weak var diceField: UITextField!
+    @IBOutlet weak var plusField: UITextField!
+    @IBOutlet weak var rolledLabel: UILabel!
     
     var char = Character.sharedData
+    var roll = 1
+    var dice = 20
+    var plus = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,14 +43,75 @@ class ViewController: UIViewController, UITextFieldDelegate {
         /*charImage.layer.borderColor = UIColor.white.cgColor
         charImage.layer.borderWidth = 2.5*/
         calcAbilities()
+        setInfo()
+        calcProf()
+        rollDice(self)
+    }
+    
+    func setInfo() {
+        nameField.text = char.name
+        classField.text = char.clas
+        levelField.text = String(char.lvl)
+        health.text = "\(char.health)  /  \(char.maxHealth)"
+    }
+    
+    func calcProf() {
+        if (char.lvl < 5) {
+            char.proficiency = 2
+        }
+        else if (char.lvl < 9) {
+            char.proficiency = 3
+        }
+        else if (char.lvl < 13) {
+            char.proficiency = 4
+        }
+        else if (char.lvl < 17) {
+            char.proficiency = 5
+        }
+        else {
+            char.proficiency = 6
+        }
+        profLabel.text = String(char.proficiency)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.tag == 13 {
-            
+        if textField.tag == 13 && textField.text != "" {
+            char.health = Int(textField.text!)!
+            health.text = "\(char.health)  /  \(char.maxHealth)"
+        }
+        if textField.tag == 14 && textField.text != "" {
+            char.maxHealth = Int(textField.text!)!
+            health.text = "\(char.health)  /  \(char.maxHealth)"
+        }
+        if textField.tag == 15 && textField.text != "" {
+            char.name = textField.text!
+        }
+        if textField.tag == 16 && textField.text != "" {
+            char.lvl = Int(textField.text!)!
+            calcProf()
+        }
+        if textField.tag == 17 && textField.text != "" {
+            char.clas = textField.text!
+        }
+        if textField.tag == 18 && textField.text != "" {
+            char.AC = Int(textField.text!)!
+            ACLabel.text = textField.text
+        }
+        if textField.tag == 19 && textField.text != "" {
+            char.speed = Int(textField.text!)!
+            speedLabel.text = textField.text
+        }
+        if textField.tag == 20 && textField.text != "" {
+            roll = Int(textField.text!)!
+        }
+        if textField.tag == 21 && textField.text != "" {
+            dice = Int(textField.text!)!
+        }
+        if textField.tag == 22 && textField.text != "" {
+            plus = Int(textField.text!)!
         }
         self.view.endEditing(true)
-        return true
+        return false
     }
     
     func calcAbilities() {
@@ -127,8 +199,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
         calcAbilities()
     }
     
+    @IBAction func rollDice(_ sender: Any) {
+        var rolled = 0
+        for _ in 1...roll {
+            rolled += Int(arc4random_uniform(UInt32(dice))) + 1
+        }
+        rolled += plus
+        rolledLabel.text = String(rolled)
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField.tag == 13 {
+        if textField.tag == 13 || textField.tag == 14 || textField.tag == 16 {
+            let aSet = NSCharacterSet(charactersIn:"0123456789").inverted
+            let compSepByCharInSet = string.components(separatedBy: aSet)
+            let numberFiltered = compSepByCharInSet.joined(separator: "")
+            return string == numberFiltered
+        }
+        if textField.tag == 18 || textField.tag == 19  || textField.tag == 20 || textField.tag == 21 || textField.tag == 22 {
             let aSet = NSCharacterSet(charactersIn:"0123456789").inverted
             let compSepByCharInSet = string.components(separatedBy: aSet)
             let numberFiltered = compSepByCharInSet.joined(separator: "")
