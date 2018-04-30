@@ -11,6 +11,7 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
+    //outlets for all necessary labels and text fields
     @IBOutlet weak var charImage: UIImageView!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var levelField: UITextField!
@@ -32,7 +33,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var plusField: UITextField!
     @IBOutlet weak var rolledLabel: UILabel!
     
+    //character delegate
     var char = Character.sharedData
+    //variables for dice related info
     var roll = 1
     var dice = 20
     var plus = 0
@@ -40,14 +43,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(saveDefaultsData), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
-        /*charImage.layer.borderColor = UIColor.white.cgColor
-        charImage.layer.borderWidth = 2.5*/
         calcAbilities()
         setInfo()
         calcProf()
         rollDice(self)
     }
     
+    //set thye character info when the app starts up
     func setInfo() {
         nameField.text = char.name
         classField.text = char.clas
@@ -55,6 +57,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         health.text = "\(char.health)  /  \(char.maxHealth)"
     }
     
+    //calculate character proficiency based on level
     func calcProf() {
         if (char.lvl < 5) {
             char.proficiency = 2
@@ -74,6 +77,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         profLabel.text = String(char.proficiency)
     }
     
+    // update labels when text fields are adjusted
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.tag == 13 && textField.text != "" {
             char.health = Int(textField.text!)!
@@ -114,6 +118,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
+    // update ability scores when +/- buttons are pressed
     func calcAbilities() {
         var tempMod = (char.abilities[0] - 10) / 2
         if tempMod > 0 {
@@ -159,6 +164,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // update the character ability info when +/- buttons are pressed
     @IBAction func abilityButtonPressed(_ sender: UIButton) {
         if  sender.tag == 1 {
             char.abilities[0] += 1
@@ -199,6 +205,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         calcAbilities()
     }
     
+    // get a random number based on dice information
     @IBAction func rollDice(_ sender: Any) {
         var rolled = 0
         for _ in 1...roll {
@@ -208,6 +215,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         rolledLabel.text = String(rolled)
     }
     
+    //make sure certain text fields only accept numbers
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField.tag == 13 || textField.tag == 14 || textField.tag == 16 {
             let aSet = NSCharacterSet(charactersIn:"0123456789").inverted
@@ -224,10 +232,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    // save character info to user defaults
     @objc func saveDefaultsData() {
         char.saveDefaultsData()
     }
     
+    // deinitilizer
     deinit {
         NotificationCenter.default.removeObserver(self)
     }

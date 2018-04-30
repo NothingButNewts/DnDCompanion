@@ -10,6 +10,7 @@ import Foundation
 
 class Character {
     
+    // character related info and keys for storage
     static let sharedData = Character()
     var abilities = [10, 10, 10, 10, 10, 10]
     var items = [Item]()
@@ -36,6 +37,7 @@ class Character {
         readDefaultsData()
     }
     
+    // store important information
     public func saveDefaultsData() {
         print("Saving to defaults")
         let defaults = UserDefaults.standard
@@ -53,6 +55,7 @@ class Character {
         defaults.set(encodedData, forKey: itemsKey)
     }
     
+    // save character info to user defaults and encode items
     private func readDefaultsData(){
         let defaults = UserDefaults.standard
         if let tempAbilities = defaults.object(forKey: "abilitiesKey") {
