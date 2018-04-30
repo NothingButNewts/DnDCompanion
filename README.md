@@ -82,5 +82,6 @@ Screenshots
 ![Alt text](https://github.com/NothingButNewts/DnDCompanion/blob/master/5eCharSheet/finalmain.png)
 
 * Screen of the inventory menu 
+
 ![Alt text](https://github.com/NothingButNewts/DnDCompanion/blob/master/5eCharSheet/finalitems.png)
 
