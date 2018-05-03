@@ -22,6 +22,7 @@ class Character {
     var proficiency = 0
     var health = 0
     var maxHealth = 10
+    var loaded = false
     let abilitiesKey = "abilitiesKey"
     let itemsKey = "itemsKey"
     let nameKey = "nameKey"
@@ -32,6 +33,7 @@ class Character {
     let speedKey = "speedKey"
     let ACKey = "ACKey"
     let profKey = "profKey"
+    let loadedKey = "loadedKey"
     
     private init() {
         readDefaultsData()
@@ -51,6 +53,7 @@ class Character {
         defaults.set(speed, forKey: speedKey)
         defaults.set(AC, forKey: ACKey)
         defaults.set(proficiency, forKey: profKey)
+        defaults.set(loaded, forKey: loadedKey)
         let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: items)
         defaults.set(encodedData, forKey: itemsKey)
     }
@@ -100,14 +103,22 @@ class Character {
         else {
             speed = 6
         }
+        if let tempLoaded = defaults.object(forKey: loadedKey) {
+            loaded = tempLoaded as! Bool
+        }
+        else {
+            loaded = false
+        }
         if let tempAC = defaults.object(forKey: ACKey) {
             AC = tempAC as! Int
         }
         else {
             AC = 10
         }
-        let decoded = defaults.object(forKey: "itemsKey") as? Data
-        let decodedItems = NSKeyedUnarchiver.unarchiveObject(with: decoded!) as? [Item]
-        items = decodedItems!
+        if (loaded == true){
+            let decoded = defaults.object(forKey: "itemsKey") as? Data
+            let decodedItems = NSKeyedUnarchiver.unarchiveObject(with: decoded!) as? [Item]
+            items = decodedItems!
+        }
     }
 }

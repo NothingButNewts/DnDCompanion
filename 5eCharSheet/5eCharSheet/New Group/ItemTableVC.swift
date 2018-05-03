@@ -87,6 +87,7 @@ class ItemTableVC: UITableViewController {
             if let item = addItemVC.item {
                 char.items.append(item)
                 tableView.reloadData()
+                char.loaded = true
             }
         }
     }
