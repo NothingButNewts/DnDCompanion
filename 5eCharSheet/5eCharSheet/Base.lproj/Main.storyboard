@@ -412,6 +412,7 @@
                     <tabBarItem key="tabBarItem" title="Character" id="ht9-KQ-7p8"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="ACField" destination="bFC-7C-O87" id="1SV-8O-GyU"/>
                         <outlet property="ACLabel" destination="e4I-mu-eoJ" id="1A6-Jg-nfM"/>
                         <outlet property="chaLabel" destination="Vtt-NP-sTQ" id="Uyq-Yt-ob2"/>
                         <outlet property="charImage" destination="ikE-gN-nQG" id="a0y-VI-8Wu"/>
@@ -429,6 +430,7 @@
                         <outlet property="profLabel" destination="AHu-z2-hug" id="ctl-lm-qr6"/>
                         <outlet property="rollField" destination="Uct-Yb-5YC" id="3vl-Jc-a8O"/>
                         <outlet property="rolledLabel" destination="W4p-iN-kFd" id="A3a-sg-DQu"/>
+                        <outlet property="speedField" destination="Msf-wL-jnm" id="jmk-Ml-AlT"/>
                         <outlet property="speedLabel" destination="jhr-ns-l9a" id="OG7-qW-71d"/>
                         <outlet property="strLabel" destination="ND0-su-6og" id="cCd-1K-zZd"/>
                         <outlet property="wisLabel" destination="gVI-6K-frH" id="yuE-ak-sI1"/>

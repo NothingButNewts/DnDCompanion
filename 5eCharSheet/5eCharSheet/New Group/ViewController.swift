@@ -32,6 +32,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var diceField: UITextField!
     @IBOutlet weak var plusField: UITextField!
     @IBOutlet weak var rolledLabel: UILabel!
+    @IBOutlet weak var ACField: UITextField!
+    @IBOutlet weak var speedField: UITextField!
     
     //character delegate
     var char = Character.sharedData
@@ -55,6 +57,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         classField.text = char.clas
         levelField.text = String(char.lvl)
         health.text = "\(char.health)  /  \(char.maxHealth)"
+        ACLabel.text = String(char.AC)
+        speedLabel.text = String(char.speed)
     }
     
     //calculate character proficiency based on level
